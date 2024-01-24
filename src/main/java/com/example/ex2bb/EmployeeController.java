@@ -1,7 +1,6 @@
 package com.example.ex2bb;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,4 +14,9 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     List<Employee> all(){return repo.findAll();}
+
+    @PostMapping("/employees")
+    Employee newEmp(@RequestBody Employee newEmp){return repo.save(newEmp);}
+    @DeleteMapping("/employees/{id}")
+    void deleteEmp(@PathVariable Long id){repo.deleteById(id);}
 }
